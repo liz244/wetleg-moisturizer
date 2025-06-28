@@ -118,13 +118,15 @@ export default function AdminPage() {
   const tourRef = collection(db, "tourDates");
 
   useEffect(() => {
-    const q = query(tourRef);
-    const unsubscribe = onSnapshot(q, snapshot => {
-      const items = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-      setTourDates(items);
-    });
-    return () => unsubscribe();
+      const tourRef = collection(db, "tourDates"); // déplacé ici
+      const q = query(tourRef);
+      const unsubscribe = onSnapshot(q, snapshot => {
+        const items = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        setTourDates(items);
+      });
+      return () => unsubscribe();
   }, []);
+
 
   const handleChange = e => {
     const { name, value, type, checked } = e.target;
