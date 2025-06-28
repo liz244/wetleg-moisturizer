@@ -1,85 +1,114 @@
-// src/pages/HomePage.js
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { db } from "../config/firebase";
 import { collection, getDocs } from "firebase/firestore";
 
+// Styled Components
 const Container = styled.div`
-  padding: 1.5rem;
+  padding: 2rem;
+  max-width: 800px;
+  margin: auto;
+  font-family: 'Segoe UI', sans-serif;
+  color: #1e293b;
 `;
 
 const Title = styled.h1`
-  font-size: 2rem;
-  font-weight: bold;
-  margin-bottom: 1rem;
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  text-align: center;
 `;
 
 const Description = styled.p`
-  margin-bottom: 1.5rem;
-  max-width: 40rem;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  text-align: center;
+  color: #475569;
 `;
 
 const Subtitle = styled.h2`
-  font-size: 1.5rem;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #334155;
 `;
 
 const List = styled.ul`
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 1rem;
 `;
 
 const ListItem = styled.li`
-  border: 1px solid #ccc;
-  padding: 1rem;
-  border-radius: 0.5rem;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  font-size: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: transform 0.2s;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+`;
+
+const DateAndPlace = styled.span`
+  font-weight: 500;
 `;
 
 const SoldOut = styled.span`
-  color: red;
-  margin-left: 0.5rem;
+  color: #dc2626;
+  font-weight: 600;
+  background-color: #fee2e2;
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  font-size: 0.875rem;
 `;
 
 export default function HomePage() {
-  const [tourDates,setTourDates] = useState([])
-    const tourDateRef= collection(db,'tourDates')
-  
-    useEffect(()=>{
-      const getTourDates = async() =>{
-        try {
-          const data = await getDocs(tourDateRef);
-          const tourDates_ = data.docs.map(doc =>({
-            ...doc.data(),
-            id: doc.id
-          }));
-          setTourDates(tourDates_)
-        } catch (error) {
-          console.error(error);
-        }
+  const [tourDates, setTourDates] = useState([]);
+  const tourDateRef = collection(db, "tourDates");
+
+  useEffect(() => {
+    const getTourDates = async () => {
+      try {
+        const data = await getDocs(tourDateRef);
+        const tourDates_ = data.docs.map(doc => ({
+          ...doc.data(),
+          id: doc.id,
+        }));
+        setTourDates(tourDates_);
+      } catch (error) {
+        console.error(error);
       }
-      getTourDates()
-    },[tourDateRef])
+    };
+    getTourDates();
+  }, [tourDateRef]);
+
   return (
     <Container>
       <Title>Wet Leg</Title>
       <Description>
-        Wet Leg est un duo indie rock britannique fondé en 2019 par Rhian Teasdale et Hester Chambers.
-        Après “Chaise Longue”, leur succès est mondial. Leur second album “Moisturizer” sort en 2025.
+        Wet Leg est un duo indie rock britannique fondé en 2019 par Rhian Teasdale et Hester Chambers. 
+        Après “Chaise Longue”, leur succès est mondial. Leur second album <em>“Moisturizer”</em> sort en 2025.
       </Description>
       <Subtitle>Tournée 2025</Subtitle>
       <List>
-        {tourDates.map((t) => (
+        {tourDates.map(t => (
           <ListItem key={t.id}>
-            <strong>{t.date}</strong> – {t.city}, {t.country} @ {t.venue}
-            {t.soldOut && <SoldOut>(Sold Out)</SoldOut>}
-           
+            <DateAndPlace>
+              <strong>{t.date}</strong> – {t.city}, {t.country} @ {t.venue}
+            </DateAndPlace>
+            {t.soldOut && <SoldOut>Sold Out</SoldOut>}
           </ListItem>
         ))}
       </List>
-      
     </Container>
   );
 }
+
