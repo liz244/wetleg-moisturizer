@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { db } from "../config/firebase";
 import { collection, deleteDoc, doc, onSnapshot, query } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
+import { FaEdit, FaTrash } from "react-icons/fa";
 import styled from "styled-components";
 
 const Container = styled.div`padding: 2rem; max-width: 720px; margin: auto;`;
@@ -63,9 +64,16 @@ export default function AdminPage() {
               {t.soldOut && <SoldOut>(Sold Out)</SoldOut>}
             </span>
             <div style={{ display: "flex", gap: "0.5rem" }}>
-              <Button onClick={() => navigate(`/admin/edit/${t.id}`)} style={{ backgroundColor: "#0284c7" }}>Modifier</Button>
-              <DeleteButton onClick={() => handleDelete(t.id)}>Supprimer</DeleteButton>
+                <Button onClick={() => navigate(`/admin/edit/${t.id}`)} style={{ backgroundColor: "#0284c7", display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                  <FaEdit />
+                  Modifier
+                </Button>
+                <DeleteButton onClick={() => handleDelete(t.id)} style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                  <FaTrash />
+                  Supprimer
+                </DeleteButton>
             </div>
+
           </ListItem>
         ))}
       </List>
