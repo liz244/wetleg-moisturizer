@@ -4,16 +4,11 @@ import HomePage from "./pages/HomePage";
 import AdminPage from "./pages/AdminPage";
 import Header from "./components/Header";
 import LoginPage from "./pages/LoginPage";
+import TourForm from "./pages/TourForm";
 
 
 function App() {
   
-
-
-// useEffect(() => {
-//   localStorage.setItem("tourDates", JSON.stringify(tourDates));
-// }, [tourDates]);
-
 
   const [isAdmin, setIsAdmin] = useState(() => {
       return localStorage.getItem("isAdmin") === "true";
@@ -33,6 +28,9 @@ function App() {
             <Navigate to="/login" />
           )
         } />
+        <Route path="/admin" element={<AdminPage />} />
+        <Route path="/admin/new" element={<TourForm />} />
+        <Route path="/admin/edit/:id" element={<TourForm />} />
         <Route path="/login" element={<LoginPage setIsAdmin={setIsAdmin} />} />
       </Routes>
     </Router>

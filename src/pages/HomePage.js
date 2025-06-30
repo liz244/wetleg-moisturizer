@@ -69,17 +69,7 @@ const SoldOut = styled.span`
   border-radius: 6px;
   font-size: 0.875rem;
 `;
-const CareerSection = styled.section`
-  margin-top: 3rem;
-  margin-bottom: 2rem;
-`;
 
-const Paragraph = styled.p`
-  font-size: 1.05rem;
-  line-height: 1.8;
-  color: #475569;
-  margin-bottom: 1rem;
-`;
 
 export default function HomePage() {
   const [tourDates, setTourDates] = useState([]);
@@ -108,19 +98,6 @@ export default function HomePage() {
         Wet Leg est un duo indie rock britannique fondé en 2019 par Rhian Teasdale et Hester Chambers. 
         Après “Chaise Longue”, leur succès est mondial. Leur second album <em>“Moisturizer”</em> sort en 2025.
       </Description>
-      <CareerSection>
-        <Subtitle>Carrière</Subtitle>
-          <Paragraph>
-            Depuis leurs débuts en 2019, Wet Leg s’est rapidement imposé comme l’un des groupes les plus singuliers de la scène indie rock. Leur premier album, sorti en 2022, a reçu un accueil critique élogieux et a été nommé à plusieurs prix prestigieux, dont les Grammy Awards.
-          </Paragraph>
-          <Paragraph>
-            Grâce à leur énergie brute, leur humour absurde et leurs performances live mémorables, Rhian Teasdale et Hester Chambers ont su conquérir un large public international. Le succès de “Chaise Longue” a été suivi par une série de tournées à guichets fermés à travers l’Europe, l’Amérique du Nord et l’Asie.
-          </Paragraph>
-          <Paragraph>
-            En 2025, elles sortent leur second album <em>“Moisturizer”</em>, marquant une évolution musicale plus affirmée, tout en conservant leur identité unique mêlant ironie et fraîcheur sonore.
-          </Paragraph>
-      </CareerSection>
-
       <Subtitle>Tournée 2025</Subtitle>
       <List>
         {tourDates.map(t => (
