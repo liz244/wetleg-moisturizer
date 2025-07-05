@@ -7,6 +7,7 @@ import TourForm from "./pages/TourForm";
 import TourPage from "./pages/TourPage"; 
 import Album from "./pages/Album";
 import Wetleg from "./pages/wetleg";
+import BlogPage from "./pages/Blog";
 
 function App() {
   const [isAdmin, setIsAdmin] = useState(() => {
@@ -36,6 +37,7 @@ function App() {
         <Route path="/login" element={<LoginPage setIsAdmin={setIsAdmin} />} />
 <Route path="/album" element={<Album />} />
 <Route path="/wetleg" element={<Wetleg />} />
+<Route path="/blog" element={<BlogPage />} /> 
         <Route path="/tour" element={<TourPage />} />
       </Routes>
     </Router>
