@@ -9,6 +9,7 @@ import MuffinSectionComponent from "../components/MuffinSectionComponent";
 import TornPaperSeparator from "../components/TornPaperSeparator";
 import BlogSection from "../components/BlogSection";
 import HeroImageBlock from "../components/HeroImageBlock";
+import Footer from "../components/Footer";
 
 
 // Styled Components
@@ -112,7 +113,7 @@ export default function HomePage() {
          <TornPaperSeparator />
 
       <BlogSection />
-
+<Footer />
       
     </>
   );

@@ -4,7 +4,7 @@ import BottomNav from "../components/BottomNav";
 import TornPaperSeparator from "../components/TornPaperSeparator"; 
 import styled from "styled-components";
 import TracklistBlock from "../components/TracklistSection";
-
+import Footer from "../components/Footer";
 
 const TopWrapper = styled.div`
   text-align: center;
@@ -58,7 +58,7 @@ const Album = () => {
 
 
       </TopWrapper>
-
+<Footer />
       
     </div>
   );
