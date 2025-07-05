@@ -46,7 +46,8 @@ const NavItem = styled(Link)`
 export default function BottomNav() {
   return (
     <NavContainer>
-      <NavItem to="/">WETLEG</NavItem>
+      <NavItem to="/wetleg">WETLEG</NavItem>
+
       <NavItem to="/album">ALBUM</NavItem>
      <NavItem to="/tour">TOURNÉE</NavItem>
 
