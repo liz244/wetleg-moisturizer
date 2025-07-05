@@ -32,7 +32,7 @@ const HeroTitle = styled.h1`
 export default function HeroSection() {
   return (
     <HeroContainer>
-      <BackgroundImage src="/assets/images/hero-bg.png" alt="Hero" />
+      <BackgroundImage src="/assets/images/image-herosection.png" alt="Hero" />
       <HeroTitle>MOISTURIZER</HeroTitle>
     </HeroContainer>
   );

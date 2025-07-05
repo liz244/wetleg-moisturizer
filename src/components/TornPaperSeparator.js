@@ -7,11 +7,15 @@ const TornPaper = styled.img`
   z-index: 5;
   width: 100%;
   margin-top: -100px; 
+  margin-top: ${(props) => props.marginTop || "0"};
+  transform: ${(props) => props.transform || "none"};
 `;
 
-export default function TornPaperSeparator() {
+export default function TornPaperSeparator({ marginTop, transform }) {
   return (
-   <TornPaper src="/assets/images/rippedpaper.png" alt="Bord déchiré" />
+   <TornPaper src="/assets/images/rippedpaper.png" alt="Bord déchiré"
+    marginTop={marginTop}
+      transform={transform} />
 
 
   );

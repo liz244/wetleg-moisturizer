@@ -2,11 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+
 html, body {
-  overflow-x: hidden;  /* interdit scroll horizontal */
   margin: 0;
   padding: 0;
-  width: 100vw;
-  box-sizing: border-box;
+  overflow-x: hidden; /* ça évite que l’écran "rebouge" sur le côté */
+  scroll-behavior: smooth;
 }
 

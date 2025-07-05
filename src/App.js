@@ -5,6 +5,7 @@ import AdminPage from "./pages/AdminPage";
 import LoginPage from "./pages/LoginPage";
 import TourForm from "./pages/TourForm";
 import TourPage from "./pages/TourPage"; 
+import Album from "./pages/Album";
 
 function App() {
   const [isAdmin, setIsAdmin] = useState(() => {
@@ -32,7 +33,7 @@ function App() {
         <Route path="/admin/new" element={<TourForm />} />
         <Route path="/admin/edit/:id" element={<TourForm />} />
         <Route path="/login" element={<LoginPage setIsAdmin={setIsAdmin} />} />
-
+<Route path="/album" element={<Album />} />
         <Route path="/tour" element={<TourPage />} />
       </Routes>
     </Router>

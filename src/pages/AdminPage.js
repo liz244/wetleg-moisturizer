@@ -48,12 +48,16 @@ export default function AdminPage() {
   }, []);
 
   const handleDelete = async id => {
+  const confirmDelete = window.confirm("Es-tu sûr(e) de vouloir supprimer cette date de tournée ?");
+  if (confirmDelete) {
     await deleteDoc(doc(db, "tourDates", id));
-  };
+  }
+};
+
 
   return (
     <Container>
-      <Title>Admin – Tournée</Title>
+      <Title>Dates de tournée du groupe wetleg</Title>
       <Button onClick={() => navigate("/admin/new")}>➕ Nouveau</Button>
 
       <List>

@@ -1,37 +1,50 @@
 import styled from "styled-components";
 
 const Section = styled.section`
-  background-color: #5c6b3a; /* vert foncé */
-  color: #6f3984; /* violet */
+  background-image: url("/assets/images/fond-grain.png"); /* ton image ici */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+z-index: 0;
+
   padding: 3rem 2rem;
   text-align: center;
   font-family: 'Helvetica', sans-serif;
-  margin-top: -60px; /* ajuste aussi cette valeur */
+  margin-top: -60px;
   position: relative;
 `;
 
+const ContentWrapper = styled.div`
+ background-image: url("/assets/images/fond-vert-transparent.png")
+  backdrop-filter: blur(3px);
+  padding: 3rem 2rem;
+  max-width: 750px;
+  margin: 0 auto;
+  border-radius: 8px;
+  position: relative;   /* ⬅️ Obligatoire pour que z-index fonctionne */
+  z-index: 1;  
+`;
 
 const Title = styled.h2`
   font-weight: 900;
   font-size: 2.5rem;
   letter-spacing: 2px;
   margin-bottom: 0.3rem;
+  color: #d24fd3; /* rose/magenta comme sur ta maquette */
 `;
 
 const Subtitle = styled.p`
   font-family: 'Dancing Script', cursive;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   font-style: italic;
   margin-bottom: 2rem;
   color: #1a0f22;
 `;
 
-
-
 const Text = styled.p`
-  font-size: 0.9rem;
+  font-size: 1rem;
   line-height: 1.6;
-  max-width: 600px;
+  max-width: 650px;
   margin: auto;
   color: #1a0f22;
 `;
@@ -57,12 +70,19 @@ const Button = styled.a`
 export default function BlogSection() {
   return (
     <Section>
-      <Title>BLOG</Title>
-      <Subtitle>wetleg - moisturizer</Subtitle>
-      <Text>
-        CrLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-      </Text>
-      <Button href="#">DÉCOUVRIR</Button>
+      <ContentWrapper>
+        <Title>Blog</Title>
+        <Subtitle>Wetleg – Moisturizer</Subtitle>
+        <Text>
+          Le blog officiel de Wetleg offre une plongée sincère dans l’univers
+          créatif du groupe, dévoilant les coulisses de leur dernier album
+          Moisturizer. Entre anecdotes de studio, inspirations musicales et
+          moments de vie sur leur île natale, les membres partagent leur
+          processus artistique avec authenticité. Chaque article met en lumière
+          leurs évolutions sonores et leurs ambitions futures.
+        </Text>
+        <Button href="#">DÉCOUVRIR</Button>
+      </ContentWrapper>
     </Section>
   );
 }

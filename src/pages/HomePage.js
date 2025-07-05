@@ -2,12 +2,14 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { db } from "../config/firebase";
 import { collection, getDocs } from "firebase/firestore";
-import HeroSection from "../components/HeroSection";
+
 import BottomNav from "../components/BottomNav";
 import NewAlbumSection from "../components/NewAlbumSection";
 import MuffinSectionComponent from "../components/MuffinSectionComponent";
 import TornPaperSeparator from "../components/TornPaperSeparator";
 import BlogSection from "../components/BlogSection";
+import HeroImageBlock from "../components/HeroImageBlock";
+
 
 // Styled Components
 const Container = styled.div`
@@ -98,7 +100,11 @@ export default function HomePage() {
 
   return (
     <>
-      <HeroSection />
+       <HeroImageBlock
+        imageSrc="/assets/images/hero-home.png"
+        titleImageSrc="/assets/images/title-moz.png"
+      />
+
         <BottomNav />
         
         <NewAlbumSection />
