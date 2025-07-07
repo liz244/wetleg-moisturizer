@@ -5,7 +5,7 @@ const TracklistSection = styled.section`
   padding: 4rem 1.5rem;
   background-color: #f7f7f7;
   position: relative;
-  margin-top: -160px;
+  margin-top: -460px;
 `;
 const TracklistTitle = styled.h2`
   font-family: 'Anton', sans-serif;

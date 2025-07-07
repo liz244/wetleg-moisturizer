@@ -4,6 +4,7 @@ import { db } from "../config/firebase";
 import { collection, getDocs } from "firebase/firestore";
 import HeroImageBlock from "../components/HeroImageBlock";
 import BottomNav from "../components/BottomNav";
+import Footer from "../components/Footer";
 
 const PageWrapper = styled.div`
   color: white;
@@ -121,15 +122,24 @@ const DividerImage = styled.img`
   width: 100%;
   margin-top: -4px;
   display: block;
+  transform: translate(125px, -170px);
+   z-index: 5;
+   width: 100vw; /* 🟣 force à remplir tout l'écran */
 `;
 
 const ExtraDatesWrapper = styled.div`
-  background-color: #6a794b;
-  padding: 3rem 1.5rem;
+  background-image: url("/assets/images/fond-grain.png"); // 🔁 mets ton image ici
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
+  padding: 4rem 4rem;
   display: flex;
   justify-content: center;
   gap: 6rem;
   position: relative;
+  margin-top: -235px; /* ← ça fait remonter */
+   z-index: 1;
+   
   
 `;
 
@@ -138,48 +148,40 @@ const PhotoWrapper = styled.div`
 `;
 
 const GirlsPhoto = styled.img`
-  width: 150px;
-  border-radius: 6px;
-  z-index: 1;
+  width: 350px;
+  border-radius: 1px;
+  z-index: 3;
+  transform: translate(400px, -165px); 
 `;
 
 const Tape = styled.img`
   position: absolute;
-  width: 60px;
-  top: -20px;
-  ${({ left }) => left ? `left: -20px; transform: rotate(-15deg);` : `right: -20px; transform: rotate(15deg);`}
+  width: 200px;
+  top: ${({ top }) => top || "0px"};
+  left: ${({ left }) => left || "auto"};
+  right: ${({ right }) => right || "auto"};
   z-index: 2;
 `;
 
+
 const DatesColumn = styled.div`
+ 
   display: flex;
   flex-direction: column;
   justify-content: center;
   font-family: 'Helvetica', sans-serif;
   color: #000;
+  max-width: 700px;
+  transform: translate(-780px, -195px);
 `;
 
-const DateRow = styled.div`
-  display: flex;
-  justify-content: space-between;
-  width: 260px;
-  margin-bottom: 1rem;
-`;
-
-const DateText = styled.span`
-  font-weight: bold;
-  text-transform: lowercase;
-`;
-
-const LocationText = styled.span`
-  text-align: right;
-`;
 
 const StarIcon = styled.img`
   position: absolute;
   right: 5%;
   bottom: 15%;
-  width: 50px;
+  width: 100px;
+  transform: translate(-100px, -305px);
 `;
 
 
@@ -213,7 +215,8 @@ export default function TourPage() {
       </TitleWrapper>
 
       <TourBlock>
-        {tourDates.map((t) => (
+  {tourDates.slice(0, 5).map((t) => (
+
           <Row key={t.id}>
             <ColLeft>{t.date}</ColLeft>
             <ColRight>
@@ -233,30 +236,39 @@ export default function TourPage() {
 </PromoWrapper>
 {tourDates.length > 5 && (
   <>
-    <DividerImage src="/assets/images/rippedpaper.png" alt="Papier déchiré" />
+    
 
     <ExtraDatesWrapper>
       <PhotoWrapper>
-        <Tape src="/assets/images/tape-left.png" alt="Scotch gauche" left />
+        <DividerImage src="/assets/images/rippedpaper.png" alt="Papier déchiré" />
+
+       <Tape src="/assets/images/tape-left.png" top="243px" left="615px" />
+
+
         <GirlsPhoto src="/assets/images/girls.png" alt="Filles qui mangent" />
-        <Tape src="/assets/images/tape-right.png" alt="Scotch droit" />
+       <Tape src="/assets/images/tape-right.png" top="-90px" right="1015px" />
       </PhotoWrapper>
 
       <DatesColumn>
-        {tourDates.slice(5).map((t, index) => (
-          <DateRow key={index}>
-            <DateText>{t.date}</DateText>
-            <LocationText>{t.city}, {t.country}</LocationText>
-          </DateRow>
-        ))}
-      </DatesColumn>
+  {tourDates.slice(5).map((t, index) => (
+    <Row key={index}>
+      <ColLeft>{t.date}</ColLeft>
+      <ColRight>
+        {t.city}, {t.country}
+        <Venue> – {t.venue}</Venue>
+        {t.soldOut && <SoldOut>(Sold Out)</SoldOut>}
+      </ColRight>
+    </Row>
+  ))}
+</DatesColumn>
+
 
       <StarIcon src="/assets/images/star.png" alt="Étoile" />
     </ExtraDatesWrapper>
   </>
 )}
 
-
+<Footer></Footer>
     </PageWrapper>
     
   );

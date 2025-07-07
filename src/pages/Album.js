@@ -14,6 +14,7 @@ const TopWrapper = styled.div`
   left: 50%;
   transform: translateX(-50%);
   position: relative;
+  background-color: #f7f5f2;
 `;
 
 const TornPaper = styled.img`
@@ -22,8 +23,8 @@ const TornPaper = styled.img`
   width: 100%;
   position: relative;
   z-index: 5;
-  margin-top: -10px; /* ou 0 si déjà collé */
-  transform: translate(30px, 10px);
+ transform="translateY(60px)
+
 `;
 
 
@@ -52,7 +53,10 @@ const Album = () => {
         <Quote>Is your muffin buttered?</Quote>
         <Quote>Would you like us to assign someone to butter your muffin?</Quote>
         <LandscapeImage src="/assets/images/muffine-paysage.png" alt="Paysage Muffin" />
-        <TornPaperSeparator transform="translateY(-112px)" />
+ <TornPaperSeparator marginTop="355px" />
+
+
+
         <TracklistBlock />
 
 
