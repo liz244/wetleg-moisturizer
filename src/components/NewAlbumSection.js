@@ -3,39 +3,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 
-const TitleWrapper = styled.div`
-  position: relative;
-  width: 777px; /* ou une largeur adaptée */
-  height: 124px; /* ajuste selon besoin */
-  transform: translate(-210px, 25px); /* ↔ gauche (X), ↕ haut (Y) */
-   z-index: 2; /* 🔼 met au-dessus */
-   font-family: "OPTIVenus", sans-serif;
-  
-   
-`;
-
-const TornBlock = styled.div`
-  position: relative;
-  max-width: 600px; /* tu peux augmenter/diminuer */
-  margin-left: auto; /* ⬅️ le pousse vers la droite */
-  margin-right: 0;
-`;
-const TornImage = styled.img`
-  width: 100%;
-  display: block;
-`;
-const TornText = styled.div`
-  position: absolute;
-  top: 50%; /* ajuste verticalement */
-  left: 50%; /* ajuste horizontalement */
-  transform: translate(-50%, -50%);
-  text-align: center;
-  color: #000;
-  padding: 1rem;
-  width: 80%;
-  font-family: "Roboto", sans-serif;
-`;
-
+// === STYLED COMPONENTS ===
 
 const Section = styled.section`
   padding: 4rem 0;
@@ -51,12 +19,26 @@ const Container = styled.div`
   gap: 4rem;
   flex-wrap: wrap;
   background-color: #f7f5f2;
+`;
 
-  @media (max-width: 1024px) {
-    flex-direction: column;
-    padding-inline: 2rem;
-    text-align: center;
-  }
+const TitleWrapper = styled.div`
+  position: relative;
+  width: 777px;
+  height: 124px;
+  transform: translate(-210px, 25px);
+  z-index: 2;
+  font-family: "OPTIVenus", sans-serif;
+`;
+
+const Title = styled.h2`
+  font-size: 3.5rem;
+  font-weight: 800;
+  font-family: "Anton", sans-serif;
+  position: absolute;
+  top: -40px;
+  left: 10%;
+  transform: translateX(85%);
+  z-index: 2;
 `;
 
 const Text = styled.div`
@@ -68,31 +50,33 @@ const Text = styled.div`
   position: relative;
 `;
 
-const Title = styled.h2`
-  font-size: 3.5rem;
-  font-weight: 800;
-  font-family: "Anton", sans-serif;
+const TextPaperWrapper = styled.div`
   position: relative;
+  width: 550px;
+  height: auto;
+  transform: translate(-90px, -100px);
   z-index: 2;
-  position: absolute;
-  top: -40px; 
-  left: 5; /* Commence à gauche */
-  transition: left 0.3s ease;
-  left: 10px; // un peu vers la droite
-left: 200px; // encore plus à droite
-left: 10%; transform: translateX(85%); // centré
-
-  
-  
 `;
 
-
-
-const Description = styled.p`
-  font-size: 0.95rem;
-  line-height: 1.5;
-  margin-bottom: 2rem;
+const RippedPaper = styled.img`
+  width: 800px;
+  max-height: 500px;
+  max-width: 1150px;
+  height: auto;
+  display: block;
   position: relative;
+`;
+
+const PaperText = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-100px, -114px);
+  color: #000;
+  font-family: "Helvetica", sans-serif;
+  font-size: 1.05rem;
+  width: 82%;
+  line-height: 1.6;
   z-index: 2;
 `;
 
@@ -109,69 +93,21 @@ const Button = styled(Link)`
   transition: background-color 0.3s;
   transform: translate(200px, -140px);
   margin-top: 1rem;
-   /* ↔ gauche (X), ↕ haut (Y) */
 
   &:hover {
-    background-color: #80BC3E;
+    background-color: #80bc3e;
   }
 `;
-
 
 const ImageContainer = styled.div`
   position: absolute;
   width: 560px;
   height: auto;
-  
- transform: translate(450px, -50px); /* ↔ gauche (X), ↕ haut (Y) */
-  @media (max-width: 768px) {
-    margin: auto;
-  }
+  transform: translate(450px, -50px);
 `;
-
-  const TextPaperWrapper = styled.div`
-  position: relative;
-  width: 550px;
-  height: auto;
-  align-items: flex-start; 
-  display: flex;
-  justify-content: center;
- align-items: flex-start; 
-  transform: translate(20px, -100px); /* pour le positionner comme tu veux */
-  z-index: 2; /* 🔼 met au-dessus */
-`;
-
-
-
-const RippedPaper = styled.img`
-  width: 800px;
-   max-height: 500px; // facul
-  max-width: 1150px;
-  height: auto;
-  
-  position: relative;
-  display: block;
-`;const PaperText = styled.div`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: #000;
-  font-family: "Helvetica", sans-serif;
-  font-size: 1.05rem;
-  width: 82%;             
-  line-height: 1.6;
- align-items: flex-start; 
-  transform: translate(-220px, -114px);
-  
-  z-index: 2;
-`;
-
-
-
-
 
 const AlbumImage = styled.img`
-  width: 100%;
+  width: 90%;
   height: auto;
   border-radius: 6px;
 `;
@@ -188,32 +124,48 @@ const TapeRight = styled(Tape)`
   width: 450px;
 `;
 
+// === COMPONENT ===
+
 export default function NewAlbumSection() {
   return (
     <Section>
       <Container>
         <TitleWrapper>
-  <Title>NEW ALBUM</Title>
-</TitleWrapper>
+          <Title>NEW ALBUM</Title>
+        </TitleWrapper>
+
         <Text>
           <TextPaperWrapper>
-  <RippedPaper src="assets/images/fond-papier.png" alt="Fond déchiré" />
-  <PaperText>
-  L’album Moisturizer de Wet Leg, sorti le 11 juillet 2025, marque une évolution notable dans leur son. Enregistré à Southwold, Norfolk, avec le producteur Dan Carey, il dévoile une approche plus énergique et affirmée, tout en conservant leur humour décalé et leur style unique. Des titres comme "Catch These Fists", "Davina McCall" et "CPR" illustrent cette nouvelle direction, mêlant des riffs incisifs à des paroles introspectives.
-</PaperText>
+            <RippedPaper
+              src="assets/images/fond-papier.png"
+              alt="Fond déchiré"
+            />
+            <PaperText>
+              L’album Moisturizer de Wet Leg, sorti le 11 juillet 2025, marque
+              une évolution notable dans leur son. Enregistré à Southwold,
+              Norfolk, avec le producteur Dan Carey, il dévoile une approche
+              plus énergique et affirmée, tout en conservant leur humour décalé
+              et leur style unique. Des titres comme "Catch These Fists",
+              "Davina McCall" et "CPR" illustrent cette nouvelle direction,
+              mêlant des riffs incisifs à des paroles introspectives.
+            </PaperText>
+          </TextPaperWrapper>
 
-</TextPaperWrapper>
-
-
-         
           <Button to="/album">DÉCOUVRIR</Button>
-
         </Text>
+
         <ImageContainer>
-          <AlbumImage src="assets/images/album-cover.png" alt="Album Moisturizer" />
-          <TapeRight src="assets/images/tape-right.png" alt="Tape Right" />
+          <AlbumImage
+            src="assets/images/album-cover.png"
+            alt="Album Moisturizer"
+          />
+          <TapeRight
+            src="assets/images/tape-right.png"
+            alt="Tape Right"
+          />
         </ImageContainer>
       </Container>
+      
     </Section>
   );
 }

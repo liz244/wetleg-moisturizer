@@ -19,6 +19,7 @@ const NavContainer = styled.nav`
   font-weight: 600;
   border-top: 1px solid #444;
   
+
 `;
 
 const NavItem = styled(Link)`

@@ -43,7 +43,7 @@ const Paragraph = styled.p`
 `;
 
 const Button = styled.button`
-  background-color: #69cf66;
+  background-color: #80BC3E;
   color: white;
   padding: 0.5rem 1.6rem;
   border-radius: 20px;
@@ -52,7 +52,7 @@ const Button = styled.button`
   cursor: pointer;
   transform: translate(300px, -30px);
   &:hover {
-    background-color: #80BC3E;
+    background-color: #69cf66;
   }
 `;
 

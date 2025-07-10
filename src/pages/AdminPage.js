@@ -4,6 +4,8 @@ import { collection, deleteDoc, doc, onSnapshot, query } from "firebase/firestor
 import { useNavigate } from "react-router-dom";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
+
 
 const Container = styled.div`padding: 2rem; max-width: 720px; margin: auto;`;
 const Title = styled.h1`font-size: 1.75rem; font-weight: 700; margin-bottom: 2rem; color: #1e293b;`;
@@ -57,6 +59,20 @@ export default function AdminPage() {
 
   return (
     <Container>
+      <div style={{ marginBottom: "1.5rem" }}>
+  <Link to="/" style={{ 
+    backgroundColor: "#22c55e",
+    color: "white",
+    padding: "0.5rem 1rem",
+    borderRadius: "8px",
+    fontWeight: "bold",
+    textDecoration: "none",
+    boxShadow: "0 2px 4px rgba(0,0,0,0.1)"
+  }}>
+    ← Retour à l’accueil
+  </Link>
+</div>
+
       <Title>Dates de tournée du groupe wetleg</Title>
       <Button onClick={() => navigate("/admin/new")}>➕ Nouveau</Button>
 

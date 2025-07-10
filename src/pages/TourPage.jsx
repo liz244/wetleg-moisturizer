@@ -92,7 +92,7 @@ const TagContainer = styled.div`
 const TagImage = styled.img`
   width: 170px;
   display: block;
-  transform: translate(500px, -350px);
+  transform: translate(500px, -500px);
 `;
 
 const TagText = styled.p`
@@ -107,7 +107,7 @@ const TagText = styled.p`
   text-transform: uppercase;
   text-align: center;
   white-space: nowrap;
-   transform: translate(425px, -370px);
+   transform: translate(425px, -520px);
 `;
 
 const GirlImage = styled.img`
@@ -139,6 +139,7 @@ background-repeat: no-repeat;
   position: relative;
   margin-top: -235px; /* ← ça fait remonter */
    z-index: 1;
+   
    
   
 `;
@@ -172,7 +173,7 @@ const DatesColumn = styled.div`
   font-family: 'Helvetica', sans-serif;
   color: #000;
   max-width: 700px;
-  transform: translate(-780px, -195px);
+  transform: translate(-780px, -95px);
 `;
 
 
@@ -184,10 +185,55 @@ const StarIcon = styled.img`
   transform: translate(-100px, -305px);
 `;
 
+const ReservationSection = styled.div`
+  margin: 2rem auto;
+  text-align: center;
+`;
+
+const ReserveLabel = styled.p`
+  font-family: 'Helvetica', sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  color: black;
+`;
+
+const Select = styled.select`
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  margin-bottom: 1rem;
+  font-family: 'Helvetica', sans-serif;
+`;
+
+const ReserveButton = styled.button`
+  background-color: #80BC3E;
+  color: white;
+  font-weight: bold;
+  font-size: 0.75rem;
+  border: none;
+  border-radius: 15px;
+  padding: 0.5rem 1.2rem;
+  cursor: pointer;
+  margin: 0 auto;
+  display: block;
+  text-transform: uppercase;
+  font-family: 'Helvetica', sans-serif;
+  box-shadow: 0px 2px 5px rgba(0,0,0,0.2);
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #80BC3E;
+  }
+`;
 
 
 export default function TourPage() {
   const [tourDates, setTourDates] = useState([]);
+  const [availableDates, setAvailableDates] = useState([]);
+const [selectedDate, setSelectedDate] = useState("");
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -197,6 +243,9 @@ export default function TourPage() {
         ...doc.data(),
       }));
       setTourDates(items);
+      const available = items.filter((item) => !item.soldOut);
+setAvailableDates(available);
+
     };
 
     fetchData();
@@ -227,6 +276,29 @@ export default function TourPage() {
           </Row>
         ))}
       </TourBlock>
+      {availableDates.length > 0 && (
+  <ReservationSection>
+    <ReserveLabel>Réserver une date disponible :</ReserveLabel>
+    <Select onChange={(e) => setSelectedDate(e.target.value)} value={selectedDate}>
+      <option value="">-- Choisir une date --</option>
+      {availableDates.map((t) => (
+        <option key={t.id} value={t.id}>
+          {t.date} — {t.city}, {t.country}
+        </option>
+      ))}
+    </Select>
+    <ReserveButton
+      onClick={() =>
+        selectedDate
+          ? alert("Réservation enregistrée pour la date : " + selectedDate)
+          : alert("Choisis une date d'abord !")
+      }
+    >
+      RÉSERVER
+    </ReserveButton>
+  </ReservationSection>
+)}
+
       <PromoWrapper>
   <TagContainer>
     <TagImage src="/assets/images/fond-gris.png" alt="Tag fond gris" />
